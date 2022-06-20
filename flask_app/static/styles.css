@@ -1,3 +1,7 @@
+body{
+    margin: 15px;
+}
+
 label{
     display: block;
     margin-top: 10px;
