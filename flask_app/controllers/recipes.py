@@ -44,6 +44,7 @@ def edit_recipe(id):
 #Delete 
 @app.route('/delete/recipe/<int:id>')
 def delete_recipe(id):
+    #create a naughty page to check if person in session trying to delete is the same person who owns it
     if 'user_id' not in session:
         return redirect('/logout')
     recipe.Recipe.delete_recipe_by_id(id)

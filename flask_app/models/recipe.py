@@ -1,6 +1,7 @@
 from unittest import result
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import app
+from flask_app.models import user
 from flask import flash, session
 
 # make class, class methods with SQL, and logic
@@ -14,9 +15,10 @@ class Recipe:
         self.instructions = data['instructions']
         self.date = data['date']
         self.time = data['time']
+        self.user_id = data['user_id']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
-        self.user = None
+        self.creator = None
 
 #Create 
     @classmethod
@@ -45,9 +47,39 @@ class Recipe:
 
         return cls(result[0])
 
+
+    @classmethod
+    def view_all_recipes(cls):
+        query = """
+        SELECT * FROM recipes
+        JOIN users
+        ON adventures.user_id = users.id
+        ;"""
+
+        result = connectToMySQL(cls.db).query_db(query)
+        all_recipes = []
+        if not result:
+            return result
+        for one_recipe in result:
+            new_recipe = cls(one_recipe)
+            this_recipe = {
+                'id' : one_recipe['users.id'],
+                'first_name' : one_recipe['first_name'],
+                'last_name' : one_recipe['last_name'],
+                'email' : one_recipe['email'],
+                'password' : one_recipe['password'],
+                'created_at' : one_recipe['users.created_at'],
+                'updated_at' : one_recipe['users.updated_at']
+            }
+            new_recipe.creator = user.User(this_recipe)
+            all_recipes.append(new_recipe)
+
+            return all_recipes
+
+
 #Update 
     @classmethod
-    def edit_recipe_by_id(cls, data,):
+    def edit_recipe_by_id(cls, data):
         if not cls.validate_recipe(data):
             return False
         query = """

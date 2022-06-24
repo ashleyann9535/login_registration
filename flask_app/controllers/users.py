@@ -21,7 +21,8 @@ def view_profile():
     if 'user_id' not in session:
         return redirect('/logout')
     this_user = user.User.get_user_by_id(session['user_id'])
-    return render_template('profile.html', this_user = this_user)
+    all_recipes = recipe.Recipe.view_all_recipes()
+    return render_template('profile.html', this_user = this_user, all_recipes = all_recipes)
 
 @app.route('/login', methods = ['POST'])
 def login_user():

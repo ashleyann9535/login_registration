@@ -75,6 +75,7 @@ class User:
                     'instructions' : one_recipe['instructions'],
                     'date' : one_recipe['date'],
                     'time' : one_recipe['time'],
+                    'user_id' : one_recipe['user_id'],
                     'created_at' : one_recipe['recipes.created_at'],
                     'updated_at' : one_recipe['recipes.updated_at']
                 }
