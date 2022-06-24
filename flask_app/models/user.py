@@ -95,22 +95,22 @@ class User:
         EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
         is_valid = True
         if len(data['first_name']) < 2:
-            flash('Your name must be at least 2 characters.')
+            flash('Your name must be at least 2 characters.', 'register')
             is_valid = False
         if len(data['last_name']) < 2:
-            flash('Your name must be at least 2 characters.')
+            flash('Your name must be at least 2 characters.', 'register')
             is_valid = False
         if not EMAIL_REGEX.match(data['email']):
-            flash('Invalid email address!')
+            flash('Invalid email address!', 'register')
             is_valid = False
         if User.get_user_by_email(data['email'].lower()):
-            flash('Email already exits')
+            flash('Email already exits', 'register')
             is_valid = False
         if len(data['password']) < 8:
-            flash('Your password must contain at least 8 characters.')
+            flash('Your password must contain at least 8 characters.', 'register')
             is_valid = False
         if data['password'] != data['confirm_password']:
-            flash('Your password does not match')
+            flash('Your password does not match', 'register')
             is_valid = False
         return is_valid
 
@@ -130,5 +130,5 @@ class User:
             if bcrypt.check_password_hash(this_user.password, data['password']):
                 session['user_id'] = this_user.id
                 return True
-        flash('Your login info is incorrect')
+        flash('Your login information is incorrect', 'login')
         return False

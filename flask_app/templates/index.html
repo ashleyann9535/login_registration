@@ -28,6 +28,15 @@
     <div class="container">
       <div class="box">
         <h1>User Login</h1>
+        {% with messages = get_flashed_messages(category_filter = ['login']) %}
+        <!-- declare a variable called messages -->
+        {% if messages %}
+        <!-- check if there are any messages -->
+        {% for message in messages %}
+        <!-- loop through the messages -->
+        <p>{{message}}</p>
+        <!-- display each message in a paragraph tag -->
+        {% endfor %} {% endif %} {% endwith %}
         <form action="/login" method="POST">
           <label>
             Email
@@ -42,6 +51,15 @@
       </div>
       <div class="box">
         <h1>Register</h1>
+        {% with messages = get_flashed_messages(category_filter = ['register']) %}
+        <!-- declare a variable called messages -->
+        {% if messages %}
+        <!-- check if there are any messages -->
+        {% for message in messages %}
+        <!-- loop through the messages -->
+        <p>{{message}}</p>
+        <!-- display each message in a paragraph tag -->
+        {% endfor %} {% endif %} {% endwith %}
         <form action="/register/user" method="POST">
           <label>
             First Name
@@ -67,14 +85,5 @@
         </form>
       </div>
     </div>
-    {% with messages = get_flashed_messages() %}
-    <!-- declare a variable called messages -->
-    {% if messages %}
-    <!-- check if there are any messages -->
-    {% for message in messages %}
-    <!-- loop through the messages -->
-    <p>{{message}}</p>
-    <!-- display each message in a paragraph tag -->
-    {% endfor %} {% endif %} {% endwith %}
   </body>
 </html>

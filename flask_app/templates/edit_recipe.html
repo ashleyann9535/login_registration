@@ -28,7 +28,7 @@
     <a href="/user/profile"><button>Profile</button></a>
     <a href="/logout"><button>Logout</button></a>
     <h1>Edit Recipe</h1>
-    {% with messages = get_flashed_messages() %}
+    {% with messages = get_flashed_messages(category_filter = ['create_recipe']) %}
     <!-- declare a variable called messages -->
     {% if messages %}
     <!-- check if there are any messages -->

@@ -107,18 +107,18 @@ class Recipe:
     def validate_recipe(data):
         is_valid = True
         if len(data['name']) < 2:
-            flash('Your name must be at least 2 characters.')
+            flash('Your name must be at least 2 characters.', 'create_recipe')
             is_valid = False
         if len(data['description']) < 10:
-            flash('Your description must be at least 10 characters.')
+            flash('Your description must be at least 10 characters.', 'create_recipe')
             is_valid = False
         if len(data['instructions']) < 10:
-            flash('Your instructions must be at least 10 characters.')
+            flash('Your instructions must be at least 10 characters.', 'create_recipe')
             is_valid = False
         if not data['date']:
-            flash('Please choose a date')
+            flash('Please choose a date', 'create_recipe')
             is_valid = False
         if 'time' not in data:
-            flash('Must select a time.')
+            flash('Must select a time.', 'create_recipe')
             is_valid = False
         return is_valid
