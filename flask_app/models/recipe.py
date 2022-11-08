@@ -53,7 +53,7 @@ class Recipe:
         query = """
         SELECT * FROM recipes
         JOIN users
-        ON adventures.user_id = users.id
+        ON recipes.user_id = users.id
         ;"""
 
         result = connectToMySQL(cls.db).query_db(query)
