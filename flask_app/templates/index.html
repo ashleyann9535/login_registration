@@ -63,15 +63,15 @@
         <form action="/register/user" method="POST">
           <label>
             First Name
-            <input type="text" name="first_name" class="d-block h-100 w-100"/>
+            <input type="text" name="first_name" value="{{info.first_name}}" class="d-block h-100 w-100"/>
           </label>
           <label>
             Last Name
-            <input type="text" name="last_name" class="d-block h-100 w-100"/>
+            <input type="text" name="last_name" value="{{info.last_name}}" class="d-block h-100 w-100"/>
           </label>
           <label>
             Email
-            <input type="email" name="email" class="d-block h-100 w-100"/>
+            <input type="email" name="email" value="{{info.email}}" class="d-block h-100 w-100"/>
           </label>
           <label>
             Password

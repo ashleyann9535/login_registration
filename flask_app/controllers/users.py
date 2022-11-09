@@ -6,14 +6,14 @@ from flask_app.models import user, recipe
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', info = '')
 
 #Create 
 @app.route('/register/user', methods = ['POST'])
 def register():
     if user.User.create_user(request.form):
         return redirect('/user/profile')
-    return redirect('/')
+    return render_template('index.html', info = request.form)
 
 #Read 
 @app.route('/user/profile')
